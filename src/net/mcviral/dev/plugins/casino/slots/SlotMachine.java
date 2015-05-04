@@ -1,5 +1,10 @@
 package net.mcviral.dev.plugins.casino.slots;
 
+import java.util.LinkedList;
+import java.util.UUID;
+
+import org.bukkit.entity.ItemFrame;
+
 public class SlotMachine {
 	
 	private int id = -1;
@@ -11,6 +16,7 @@ public class SlotMachine {
 	private int frameX = -1;
 	private int frameY = -1;
 	private int frameZ = -1;
+	private LinkedList <ItemFrame> frames = new LinkedList <ItemFrame> ();
 	private SlotMachineTimer timer = null;
 	
 	public SlotMachine(int id, String tier, String world, int leverX, int leverY, int leverZ, int frameX, int frameY, int frameZ){
@@ -20,6 +26,10 @@ public class SlotMachine {
 		this.leverX = leverX;
 		this.leverY = leverY;
 		this.leverZ = leverZ;
+		
+	}
+	
+	public void updateFrames(){
 		
 	}
 
@@ -95,6 +105,21 @@ public class SlotMachine {
 		this.frameZ = frameZ;
 	}
 	
+	public boolean isBeingUsed(){
+		if (timer == null){
+			return true;
+		}
+		return timer.isFinished();
+	}
 	
+	public void pull(UUID uuid){
+		if (isBeingUsed() == false){
+			timer = new SlotMachineTimer(frames);
+		}
+	}
+	
+	public void halt(){
+		timer.stop();
+	}
 	
 }
