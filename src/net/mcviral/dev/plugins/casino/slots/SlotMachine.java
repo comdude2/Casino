@@ -27,7 +27,7 @@ public class SlotMachine implements ConfigurationSerializable {
 		frameLocation = frame;
 	}
 
-    public SlotMachine(Map<String, Object> m) {
+    public SlotMachine(HashMap<String, Object> m) {
         leverLocation = (Location) m.get("leverLocation");
         frameLocation = (Location) m.get("frameLocation");
         world = (String) m.get("world");
