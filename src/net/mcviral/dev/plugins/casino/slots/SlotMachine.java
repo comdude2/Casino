@@ -1,33 +1,48 @@
 package net.mcviral.dev.plugins.casino.slots;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.Location;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.ItemFrame;
 
-public class SlotMachine {
+public class SlotMachine implements ConfigurationSerializable {
 	
 	private int id = -1;
 	private String tier = null;
 	private String world = null;
-	private int leverX = -1;
-	private int leverY = -1;
-	private int leverZ = -1;
-	private int frameX = -1;
-	private int frameY = -1;
-	private int frameZ = -1;
+	private final Location leverLocation;
+	private final Location frameLocation;
 	private LinkedList <ItemFrame> frames = new LinkedList <ItemFrame> ();
 	private SlotMachineTimer timer = null;
 	
-	public SlotMachine(int id, String tier, String world, int leverX, int leverY, int leverZ, int frameX, int frameY, int frameZ){
+	public SlotMachine(int id, String tier, String world, Location lever, Location frame){
 		this.id = id;
 		this.tier = tier;
 		this.world = world;
-		this.leverX = leverX;
-		this.leverY = leverY;
-		this.leverZ = leverZ;
-		
+		leverLocation = lever;
+		frameLocation = frame;
 	}
+
+    public SlotMachine(Map<String, Object> m) {
+        leverLocation = (Location) m.get("leverLocation");
+        frameLocation = (Location) m.get("frameLocation");
+        world = (String) m.get("world");
+        id = (Integer) m.get("id");
+    }
+
+    public Map<String, Object> serialize() {
+        Map map = new HashMap<String, Object>();
+        map.put("leverLocation", leverLocation);
+        map.put("frameLocation", frameLocation);
+        map.put("world", world);
+        map.put("tier", tier);
+
+        return map;
+    }
 	
 	public void updateFrames(){
 		
@@ -57,6 +72,15 @@ public class SlotMachine {
 		this.world = world;
 	}
 
+    public Location getFrameLocation() {
+        return this.frameLocation;
+    }
+
+    public Location getLeverLocation() {
+        return this.leverLocation;
+    }
+
+    /* incase you want to revert
 	public int getLeverX() {
 		return leverX;
 	}
@@ -104,6 +128,7 @@ public class SlotMachine {
 	public void setFrameZ(int frameZ) {
 		this.frameZ = frameZ;
 	}
+	*/
 	
 	public boolean isBeingUsed(){
 		if (timer == null){
