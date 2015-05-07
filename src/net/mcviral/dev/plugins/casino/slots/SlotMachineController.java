@@ -2,7 +2,7 @@ package net.mcviral.dev.plugins.casino.slots;
 
 import net.mcviral.dev.plugins.casino.main.Casino;
 import net.mcviral.dev.plugins.casino.util.FileManager;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.Location;
 
 import java.io.File;
 import java.util.HashSet;
@@ -21,8 +21,8 @@ public class SlotMachineController {
         return this.machines;
     }
 
-    public void mkSlotMachine(int id, String tier, String world, int leverX, int leverY, int leverZ, int frameX, int frameY, int frameZ) {
-        SlotMachine sm  = new SlotMachine(id, tier, world, leverX, leverY, leverZ, frameX, frameY, frameZ);
+    public void mkSlotMachine(int id, String tier, String world, Location lever, Location frame) {
+        SlotMachine sm  = new SlotMachine(id, tier, world, lever, frame);
         machines.add(sm);
     }
 
