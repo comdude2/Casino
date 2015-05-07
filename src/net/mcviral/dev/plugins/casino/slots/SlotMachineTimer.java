@@ -28,9 +28,14 @@ public class SlotMachineTimer implements Runnable{
 	public void run() {
 		if (!stop){
 			for (ItemFrame f : frames){
-				
+				pickBlock(f);
 			}
 		}
+	}
+	
+	private synchronized ItemFrame pickBlock(ItemFrame f){
+		randomBlock();
+		return null;
 	}
 	
 	private int randomBlock(){

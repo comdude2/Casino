@@ -35,7 +35,7 @@ public class SlotMachine implements ConfigurationSerializable {
     }
 
     public Map<String, Object> serialize() {
-        Map map = new HashMap<String, Object>();
+        HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("leverLocation", leverLocation);
         map.put("frameLocation", frameLocation);
         map.put("world", world);
@@ -79,57 +79,7 @@ public class SlotMachine implements ConfigurationSerializable {
     public Location getLeverLocation() {
         return this.leverLocation;
     }
-
-    /* incase you want to revert
-	public int getLeverX() {
-		return leverX;
-	}
-
-	public void setLeverX(int leverX) {
-		this.leverX = leverX;
-	}
-
-	public int getLeverY() {
-		return leverY;
-	}
-
-	public void setLeverY(int leverY) {
-		this.leverY = leverY;
-	}
-
-	public int getLeverZ() {
-		return leverZ;
-	}
-
-	public void setLeverZ(int leverZ) {
-		this.leverZ = leverZ;
-	}
-
-	public int getFrameX() {
-		return frameX;
-	}
-
-	public void setFrameX(int frameX) {
-		this.frameX = frameX;
-	}
-
-	public int getFrameY() {
-		return frameY;
-	}
-
-	public void setFrameY(int frameY) {
-		this.frameY = frameY;
-	}
-
-	public int getFrameZ() {
-		return frameZ;
-	}
-
-	public void setFrameZ(int frameZ) {
-		this.frameZ = frameZ;
-	}
-	*/
-	
+    
 	public boolean isBeingUsed(){
 		if (timer == null){
 			return true;
